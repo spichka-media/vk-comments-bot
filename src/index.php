@@ -9,7 +9,12 @@ if (!isset($data->secret) || !hash_equals($env['SECRET'], $data->secret)) {
     return;
 }
 
-if (!isset($data->type) || $data->type !== "wall_post_new") {
+if ($data->type === 'confirmation') {
+    echo $env['CONFIRMATION_TOKEN'];
+    return;
+}
+
+if ($data->type !== "wall_post_new") {
     return;
 }
 
